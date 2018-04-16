@@ -1,0 +1,36 @@
+ext {
+
+    //kotlin版本
+    KOTLIN_VERSION = "1.2.30"
+
+    // 用于编译的SDK版本
+    COMPILE_SDK_VERSION = 27
+
+    // 最低支持Android版本
+    MIN_SDK_VERSION = 21
+
+    // 目标版本
+    TARGET_SDK_VERSION = 27
+
+    VERSION_CODE = 1
+
+    VERSION_NAME = "1.0"
+
+    TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
+
+    // 应用程序包名
+    APPLICATION_ID = "cn.xpcheng.playandroid"
+
+    // Version of "com.android.support:appcompat-v7", refer it as follow:
+    //  compile "com.android.support:appcompat-v7:${APPCOMPAT_VERSION}"
+    APPCOMPAT_VERSION = '27.1.1'
+
+    /**
+     * 第三方框架版本号
+     */
+    okhttpVersion = "3.10.0"
+    retrofitVersion = "2.4.0"
+    gsonVersion = "2.8.2"
+    rxKotlinVersion = "2.2.0"
+    rxAndroidVersion = "2.0.2"
+}
