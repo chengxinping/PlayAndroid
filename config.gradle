@@ -33,4 +33,6 @@ ext {
     gsonVersion = "2.8.2"
     rxKotlinVersion = "2.2.0"
     rxAndroidVersion = "2.0.2"
+    rxLifeCycleVersion = "2.2.1"
+    rxLoggerVersion = "2.2.0"
 }

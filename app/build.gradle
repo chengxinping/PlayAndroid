@@ -31,5 +31,27 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation project(':http')
+    //okhttp
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpVersion}"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    //gson
+    implementation "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+    //rxKotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:${rootProject.ext.rxKotlinVersion}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    //rxLifeCycle
+    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:${rootProject.ext.rxLifeCycleVersion}"
+    implementation("com.trello.rxlifecycle2:rxlifecycle-components:${rootProject.ext.rxLifeCycleVersion}") {
+        exclude group: 'io.reactivex.rxjava2:rxandroid'
+    }
+    //logger
+    implementation "com.orhanobut:logger:${rootProject.ext.rxLoggerVersion}"
+
+
+    implementation project(':common')
 }
