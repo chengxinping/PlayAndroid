@@ -12,5 +12,5 @@ class BaseResponse<T> {
     var errorCode: Int = 0
 
     // errorCode如果为负数才有  errorMsg会包含错误信息
-    var errorMsg: String? = null
+    var errorMsg: String = ""
 }

@@ -38,14 +38,14 @@ class RequestInterceptor : Interceptor {
     }
 
     @Throws(IOException::class)
-    fun bodyToString(requestBody: RequestBody?): String {
+    private fun bodyToString(requestBody: RequestBody?): String {
         val copy = requestBody
-        var buffer: Buffer = Buffer()
+        var buffer = Buffer()
         copy?.writeTo(buffer)
         return buffer.readUtf8()
     }
 
-    fun setHeaders(headersParams: HashMap<String, String>): Headers {
+    private fun setHeaders(headersParams: HashMap<String, String>): Headers {
         var builder: Headers.Builder = Headers.Builder()
         headersParams?.entries.forEach {
             builder[it.key] = it.value
