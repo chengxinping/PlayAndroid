@@ -1,46 +1,63 @@
 package cn.xpcheng.playandroid.base
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /**
  * @author ChengXinPing
- * @time   2018/4/17 21:27
+ * @time   2018/10/31 11:36
  *
  */
-open class BasePresenter<T : IBaseView> : IPresenter<T> {
+abstract class BasePresenter<V : IView> : IPresenter<V>, LifecycleObserver {
 
-    var mRootView: T? = null
+    var mView: V? = null
         private set
 
-    private var compositeDisposable = CompositeDisposable()
+    private val isViewAttached: Boolean
+        get() = mView != null
 
 
-    override fun attachView(mRootView: T) {
-        this.mRootView = mRootView
+    private var mCompositeDisposable: CompositeDisposable? = null
+
+    override fun attachView(mView: V) {
+        mCompositeDisposable = CompositeDisposable()
+        this.mView = mView
+        if (mView is LifecycleOwner) {
+            mView.lifecycle.addObserver(this)
+        }
+
     }
 
     override fun detachView() {
-        mRootView = null
-        //保证activity结束时取消所有正在执行的订阅
-
-        //保证activity结束时取消所有正在执行的订阅
-        if (!compositeDisposable.isDisposed) {
-            compositeDisposable.clear()
-        }
+        //解绑
+        unDispose()
+        mView = null
     }
 
-    private val isViewAttached: Boolean
-        get() = mRootView != null
-
-    fun checkViewAttached() {
+    open fun checkViewAttached() {
         if (!isViewAttached) throw MvpViewNotAttachedException()
     }
 
-    fun addSubscription(disposable: Disposable) {
-        compositeDisposable.add(disposable)
+    open fun addSubscription(disposable: Disposable) {
+        mCompositeDisposable?.add(disposable)
+    }
+
+    private fun unDispose() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable!!.clear()
+        }
+        mCompositeDisposable = null
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    private fun onDestroy(owner: LifecycleOwner) {
+        detachView()
+        owner.lifecycle.removeObserver(this)
     }
 
     private class MvpViewNotAttachedException internal constructor() : RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
-
 }

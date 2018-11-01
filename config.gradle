@@ -1,38 +1,75 @@
 ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+    dependVersion = [
+            androidSupportSdkVersion: "28.0.0",
+            okhttpVersion           : "3.11.0",
+            retrofitSdkVersion      : "2.4.0",
+            gsonVersion             : "2.8.5",
+            rxJava                  : "2.2.3",
+            rxAndroid               : "2.1.0",
+            glideSdkVersion         : "4.8.0",
+            rxKotlin                : "2.3.0",
+            anko                    : "0.10.7"
+    ]
 
-    //kotlin版本
-    KOTLIN_VERSION = "1.2.30"
 
-    // 用于编译的SDK版本
-    COMPILE_SDK_VERSION = 27
+    supportDeps = [
+            "supportv4"        : "com.android.support:support-v4:${dependVersion.androidSupportSdkVersion}",
+            "appcompatv7"      : "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}",
+            "cardview"         : "com.android.support:cardview-v7:${dependVersion.androidSupportSdkVersion}",
+            "design"           : "com.android.support:design:${dependVersion.androidSupportSdkVersion}",
+            "constraint-layout": "com.android.support.constraint:constraint-layout:1.1.2",
+            "annotations"      : "com.android.support:support-annotations:${dependVersion.androidSupportSdkVersion}"
+    ]
 
-    // 最低支持Android版本
-    MIN_SDK_VERSION = 21
+    retrofit = [
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${dependVersion.retrofitSdkVersion}",
+            "retrofitConverterGson"   : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofitSdkVersion}",
+            "retrofitAdapterRxjava2"  : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofitSdkVersion}",
+            "okhttp3LoggerInterceptor": "com.squareup.okhttp3:logging-interceptor:${dependVersion.okhttpVersion}"
+    ]
 
-    // 目标版本
-    TARGET_SDK_VERSION = 27
+    rxJava = [
+            "rxJava"   : "io.reactivex.rxjava2:rxjava:${dependVersion.rxJava}",
+            "rxAndroid": "io.reactivex.rxjava2:rxandroid:${dependVersion.rxAndroid}",
+            "rxKotlin" : "io.reactivex.rxjava2:rxkotlin:${dependVersion.rxKotlin}",
+            "anko"     : "org.jetbrains.anko:anko:${dependVersion.anko}"
+    ]
 
-    VERSION_CODE = 1
+    testDeps = [
+            "junit" : 'junit:junit:4.12',
+            "runner": 'com.android.support.test:runner:1.0.2',
+    ]
+    commonDeps = [
+            "glide"           : "com.github.bumptech.glide:glide:${dependVersion.glideSdkVersion}",
+            //万能rv adapter
+            "brvh"            : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1',
+            //轮播图
+            "banner"          : 'cn.bingoogolapple:bga-banner:2.2.5@aar',
+            //Android webview
+            "agentweb"        : 'com.just.agentweb:agentweb:4.0.2',
+            "multidex"        : 'com.android.support:multidex:1.0.3',
+            //热搜标签
+            "flow-layout"     : 'com.hyman:flowlayout-lib:1.1.2',
+            "logger"          : 'com.orhanobut:logger:2.1.1',
+            "android-autosize": 'me.jessyan:autosize:1.0.5'
+    ]
+    otherDeps = [
+            "glideCompiler": "com.github.bumptech.glide:compiler:${dependVersion.glideSdkVersion}",
+            "glideOkhttp"  : "com.github.bumptech.glide:okhttp3-integration:${dependVersion.glideSdkVersion}"
+    ]
 
-    VERSION_NAME = "1.0"
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values()
+    rxJavaLibs = rxJava.values()
+    commonLibs = commonDeps.values()
 
-    TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
-
-    // 应用程序包名
-    APPLICATION_ID = "cn.xpcheng.playandroid"
-
-    // Version of "com.android.support:appcompat-v7", refer it as follow:
-    //  compile "com.android.support:appcompat-v7:${APPCOMPAT_VERSION}"
-    APPCOMPAT_VERSION = '27.1.1'
-
-    /**
-     * 第三方框架版本号
-     */
-    okhttpVersion = "3.10.0"
-    retrofitVersion = "2.4.0"
-    gsonVersion = "2.8.2"
-    rxKotlinVersion = "2.2.0"
-    rxAndroidVersion = "2.0.2"
-    rxLifeCycleVersion = "2.2.1"
-    rxLoggerVersion = "2.2.0"
+    annotationProcessorLibs = [otherDeps["glideCompiler"]]
 }

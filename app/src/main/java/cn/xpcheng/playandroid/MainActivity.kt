@@ -1,41 +1,51 @@
 package cn.xpcheng.playandroid
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
-import cn.xpcheng.playandroid.mvp.contract.BannerContract
-import cn.xpcheng.playandroid.mvp.model.bean.BannerBean
-import cn.xpcheng.playandroid.mvp.presenter.BannerPresenter
+import cn.xpcheng.playandroid.base.BaseMVPActivity
+import cn.xpcheng.playandroid.mvp.contract.HomePageContract
+import cn.xpcheng.playandroid.mvp.model.Banner
+import cn.xpcheng.playandroid.mvp.presenter.HomePagePresenter
 import com.orhanobut.logger.Logger
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class MainActivity : AppCompatActivity(), BannerContract.View {
+class MainActivity : BaseMVPActivity<HomePageContract.View, HomePagePresenter>(), HomePageContract.View {
 
-    private var mPresenter: BannerPresenter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        mPresenter = BannerPresenter()
-        mPresenter?.attachView(this)
-        mPresenter?.getBannerData()
+    override fun getLayoutID(): Int {
+        return R.layout.activity_main
     }
 
-    override fun showBanner(bannerBeans: List<BannerBean>) {
-        Logger.d(bannerBeans)
-        Toast.makeText(this, bannerBeans[0].desc, Toast.LENGTH_SHORT).show()
+    override fun initView() {
+        text.run {
+            text = "测试banner"
+            onClick { mPresenter?.getBanner() }
+        }
+
     }
 
-    override fun showError(errorMsg: String, errorCode: Int) {
+
+    override fun initData() {
+        super.initData()
+        mPresenter?.getBanner()
     }
 
     override fun showLoading() {
+
     }
 
-    override fun dismissLoading() {
+    override fun createPresenter(): HomePagePresenter = HomePagePresenter()
+
+    override fun hideLoading() {
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter?.detachView()
+    override fun showError(errorMsg: String) {
+        Logger.e(errorMsg)
     }
+
+    override fun onGetBannerSuccess(banners: List<Banner>) {
+        text.run {
+            text = banners[0].title
+        }
+    }
+
 }

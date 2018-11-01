@@ -1,7 +1,9 @@
 package cn.xpcheng.playandroid
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.os.Bundle
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
@@ -12,23 +14,28 @@ import kotlin.properties.Delegates
  * @time   2018/4/17 20:59
  *
  */
-class MyApplication : Application() {
+class App : Application() {
+
 
     companion object {
 
         var context: Context by Delegates.notNull()
             private set
+        lateinit var instance: Application
     }
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         context = applicationContext
         initConfig()
+        registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
+
     }
 
 
     /**
-     * 初始化配置
+     * 初始化logger配置
      */
     private fun initConfig() {
 
@@ -45,4 +52,28 @@ class MyApplication : Application() {
         })
     }
 
+    //匿名内部类
+    private val mActivityLifecycleCallbacks = object : ActivityLifecycleCallbacks {
+        override fun onActivityPaused(activity: Activity?) {
+        }
+
+        override fun onActivityResumed(activity: Activity?) {
+        }
+
+        override fun onActivityStarted(activity: Activity?) {
+        }
+
+        override fun onActivityDestroyed(activity: Activity?) {
+        }
+
+        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+        }
+
+        override fun onActivityStopped(activity: Activity?) {
+        }
+
+        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+        }
+
+    }
 }

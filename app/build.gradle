@@ -1,19 +1,20 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        applicationId rootProject.ext.APPLICATION_ID
-        minSdkVersion rootProject.ext.MIN_SDK_VERSION
-        targetSdkVersion rootProject.ext.TARGET_SDK_VERSION
-        versionCode rootProject.ext.VERSION_CODE
-        versionName rootProject.ext.VERSION_NAME
-        testInstrumentationRunner rootProject.ext.TEST_INSTRUMENTATION_RUNNER
+        applicationId "cn.xpcheng.playandroid"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -22,36 +23,43 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    dexOptions {
+        dexInProcess true
+        preDexLibraries true
+        javaMaxHeapSize "4g"
+        // incremental true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN_VERSION}"
-    implementation "com.android.support:appcompat-v7:${APPCOMPAT_VERSION}"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //okhttp
-    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpVersion}"
-    //retrofit
-    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    //gson
-    implementation "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
-    //rxKotlin
-    implementation "io.reactivex.rxjava2:rxkotlin:${rootProject.ext.rxKotlinVersion}"
-    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
-    //rxLifeCycle
-    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:${rootProject.ext.rxLifeCycleVersion}"
-    implementation("com.trello.rxlifecycle2:rxlifecycle-components:${rootProject.ext.rxLifeCycleVersion}") {
-        exclude group: 'io.reactivex.rxjava2:rxandroid'
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
     }
-    //logger
-    implementation "com.orhanobut:logger:${rootProject.ext.rxLoggerVersion}"
-
-
-    implementation project(':common')
+    testImplementation rootProject.ext.testDeps["junit"]
+    androidTestImplementation rootProject.ext.testDeps["runner"]
+    // Support库
+    api rootProject.ext.supportLibs
+    // 网络请求库
+    implementation rootProject.ext.networkLibs
+    // RxJava2
+    implementation rootProject.ext.rxJavaLibs
+    implementation rootProject.ext.commonLibs
+    // APT dependencies(Kotlin内置的注解处理器)
+    annotationProcessor rootProject.ext.annotationProcessorLibs
+    //GlideOkHttp
+    implementation(rootProject.ext.otherDeps["glideOkhttp"]) {
+        exclude group: 'glide-parent'
+    }
 }
