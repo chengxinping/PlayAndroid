@@ -2,7 +2,7 @@ package cn.xpcheng.playandroid.mvp.presenter
 
 import cn.xpcheng.playandroid.base.BasePresenter
 import cn.xpcheng.playandroid.mvp.contract.HomePageContract
-import cn.xpcheng.playandroid.mvp.model.HomePageModel
+import cn.xpcheng.playandroid.mvp.model.bean.HomePageModel
 
 /**
  * @author ChengXinPing
