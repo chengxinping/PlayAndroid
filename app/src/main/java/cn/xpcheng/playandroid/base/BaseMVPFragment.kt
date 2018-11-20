@@ -18,11 +18,11 @@ abstract class BaseMVPFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
     protected abstract fun createPresenter(): P
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         mPresenter = createPresenter()
         if (mPresenter != null) {
             mPresenter!!.attachView(this as V)
         }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {
@@ -31,5 +31,17 @@ abstract class BaseMVPFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
             mPresenter!!.detachView()
         }
         mPresenter = null
+    }
+
+    override fun showError(errorMsg: String) {
+
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
     }
 }

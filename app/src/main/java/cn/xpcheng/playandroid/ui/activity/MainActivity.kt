@@ -12,7 +12,7 @@ class MainActivity : BaseActivity() {
     private var mHomePageFragment: HomePageFragment? = null
     private var mWechatFragment: WechatFragment? = null
     private var mProjectFragment: ProjectFragment? = null
-    private var mTreeFragment: TreeFragment? = null
+    private var mTreeFragment: KnowledgeTreeFragment? = null
     private var mMineFragment: MineFragment? = null
 
 
@@ -72,7 +72,7 @@ class MainActivity : BaseActivity() {
             R.id.navigation_tree -> {
                 toolbar.title = getString(R.string.title_tree)
                 if (mTreeFragment == null) {
-                    mTreeFragment = TreeFragment.getInstance()
+                    mTreeFragment = KnowledgeTreeFragment.getInstance()
                     transaction.add(R.id.container, mTreeFragment!!, getString(R.string.title_tree))
                 } else {
                     transaction.show(mTreeFragment!!)

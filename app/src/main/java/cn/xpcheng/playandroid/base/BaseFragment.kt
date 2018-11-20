@@ -47,6 +47,7 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
         initView()
+        lazyLoadDataIfPrepared()
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
