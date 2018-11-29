@@ -1,18 +1,22 @@
 package cn.xpcheng.playandroid.ui.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.KnowledgeTreeListAdapter
 import cn.xpcheng.playandroid.base.BaseMVPFragment
+import cn.xpcheng.playandroid.constant.Constant
 import cn.xpcheng.playandroid.mvp.contract.KnowledgeTreeContract
-import cn.xpcheng.playandroid.mvp.model.KnowledgeTree
+import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 import cn.xpcheng.playandroid.mvp.presenter.KnowledgeTreePresenter
+import cn.xpcheng.playandroid.ui.activity.KnowledgeListActivity
 import cn.xpcheng.playandroid.utils.DisplayUtil
 import cn.xpcheng.playandroid.widget.itemDecoration.SpaceItemDecoration
-import kotlinx.android.synthetic.main.fragment_konwledge_tree.*
+import com.chad.library.adapter.base.BaseQuickAdapter
+import kotlinx.android.synthetic.main.fragment_refresh_recycler.*
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -26,29 +30,23 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         fun getInstance(): KnowledgeTreeFragment = KnowledgeTreeFragment()
     }
 
-    override fun getLayoutID(): Int = R.layout.fragment_konwledge_tree
+    override fun getLayoutID(): Int = R.layout.fragment_refresh_recycler
 
     override fun createPresenter(): KnowledgeTreePresenter = KnowledgeTreePresenter()
 
-    /**
-     * datas
-     */
-    private val mDatas = mutableListOf<KnowledgeTree>()
+    //数据
+    private val data = mutableListOf<KnowledgeTree>()
 
-    /**
-     * Adapter
-     */
     private val mKnowledgeTreeListAdapter: KnowledgeTreeListAdapter by lazy {
-        KnowledgeTreeListAdapter(activity as Context?, mDatas)
+        KnowledgeTreeListAdapter(activity, data)
     }
 
-    /**
-     * LinearLayoutManager
-     */
+
     private val mLinearLayoutManager: LinearLayoutManager by lazy {
         LinearLayoutManager(activity)
     }
 
+    //RecyclerView分割线
     private val mSpaceItemDecoration: SpaceItemDecoration by lazy {
         activity.let {
             SpaceItemDecoration(DisplayUtil.dp2px(activity as Context, 10F))
@@ -61,7 +59,7 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
             isRefreshing = true
             setOnRefreshListener(onRefreshListener)
         }
-        rv_knowledge_tree.run {
+        recycler_view.run {
             layoutManager = mLinearLayoutManager
             adapter = mKnowledgeTreeListAdapter
             itemAnimator = DefaultItemAnimator()
@@ -72,8 +70,9 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         }
 
         mKnowledgeTreeListAdapter.run {
-            bindToRecyclerView(rv_knowledge_tree)
+            bindToRecyclerView(recycler_view)
             setEnableLoadMore(false)
+            onItemClickListener = this@KnowledgeTreeFragment.onItemClickListener
         }
     }
 
@@ -110,11 +109,19 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         toast(errorMsg)
     }
 
-    /**
-     * RefreshListener
-     */
+    //下拉刷新监听
     private val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
+
         mPresenter!!.getKnowledgeTree()
     }
 
+
+    private val onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+        if (data.size != 0) {
+            Intent(activity, KnowledgeListActivity::class.java).run {
+                putExtra(Constant.KEY_KNOWLEDGE_LIST_DATA, this@KnowledgeTreeFragment.data[position])
+                startActivity(this)
+            }
+        }
+    }
 }

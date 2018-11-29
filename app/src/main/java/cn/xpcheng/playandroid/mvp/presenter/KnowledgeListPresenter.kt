@@ -1,33 +1,32 @@
 package cn.xpcheng.playandroid.mvp.presenter
 
 import cn.xpcheng.playandroid.base.BasePresenter
-import cn.xpcheng.playandroid.mvp.contract.HomePageContract
-import cn.xpcheng.playandroid.mvp.model.HomePageModel
+import cn.xpcheng.playandroid.mvp.contract.KnowledgeListContract
+import cn.xpcheng.playandroid.mvp.model.KnowledgeListModel
 
 /**
  * @author ChengXinPing
- * @time   2018/11/1 9:30
+ * @time   2018/11/28 15:24
  *
  */
-class HomePagePresenter : BasePresenter<HomePageContract.View>(), HomePageContract.Presenter {
+class KnowledgeListPresenter : BasePresenter<KnowledgeListContract.View>(), KnowledgeListContract.Presenter {
 
-    private val homePageModel: HomePageModel by lazy {
-        HomePageModel()
+    private val knowledgeListModel: KnowledgeListModel by lazy {
+        KnowledgeListModel()
     }
 
-    override fun getBanner() {
+    override fun getKnowledgeList(page: Int, cid: Int) {
         mView?.showLoading()
-        val disposable = homePageModel.getBanners()
+        val disposable = knowledgeListModel.getKnowledgeList(page, cid)
                 .subscribe({ results ->
                     mView?.apply {
                         if (results.errorCode != 0) {
                             showError(results.errorMsg)
                         } else {
-                            onGetBannerSuccess(results.data)
+                            onGetKonwledgeListDone(results.data)
                         }
                         hideLoading()
                     }
-
                 }, { t ->
                     mView?.apply {
                         hideLoading()
@@ -36,5 +35,4 @@ class HomePagePresenter : BasePresenter<HomePageContract.View>(), HomePageContra
                 })
         addSubscription(disposable)
     }
-
 }

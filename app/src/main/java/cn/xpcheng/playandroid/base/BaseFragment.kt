@@ -30,14 +30,14 @@ abstract class BaseFragment : Fragment() {
     protected abstract fun getLayoutID(): Int
 
     /**
-     * 初始化数据
-     */
-    abstract fun initData()
-
-    /**
      * 初始化 View
      */
     abstract fun initView()
+
+    /**
+     * 初始化数据
+     */
+    abstract fun initData()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(getLayoutID(), null)

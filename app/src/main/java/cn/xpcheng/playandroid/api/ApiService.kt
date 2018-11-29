@@ -1,10 +1,13 @@
 package cn.xpcheng.playandroid.api
 
-import cn.xpcheng.playandroid.mvp.model.Banner
-import cn.xpcheng.playandroid.mvp.model.BaseResponse
-import cn.xpcheng.playandroid.mvp.model.KnowledgeTree
+import cn.xpcheng.playandroid.mvp.model.bean.ArticleBody
+import cn.xpcheng.playandroid.mvp.model.bean.Banner
+import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
+import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * @author ChengXinPing
@@ -12,11 +15,22 @@ import retrofit2.http.GET
  *
  */
 interface ApiService {
-    //首页轮播图
+    /**
+     * 首页轮播图
+     */
     @GET("banner/json")
     fun getBanners(): Observable<BaseResponse<List<Banner>>>
 
-    //知识体系
+    /**知识体系
+     * http://www.wanandroid.com/tree/json
+     */
     @GET("tree/json")
     fun getKnowledgeTree(): Observable<BaseResponse<List<KnowledgeTree>>>
+
+    /**知识体系下面的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=60
+     *cid 分类的id，上述二级目录的id  页码：拼接在链接上，从0开始。
+     */
+    @GET("article/list/{page}/json")
+    fun getKnowledegList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleBody>>
 }

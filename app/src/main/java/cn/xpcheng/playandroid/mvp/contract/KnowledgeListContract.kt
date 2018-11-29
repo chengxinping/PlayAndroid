@@ -2,19 +2,19 @@ package cn.xpcheng.playandroid.mvp.contract
 
 import cn.xpcheng.playandroid.base.IPresenter
 import cn.xpcheng.playandroid.base.IView
-import cn.xpcheng.playandroid.mvp.model.bean.Banner
+import cn.xpcheng.playandroid.mvp.model.bean.ArticleBody
 
 /**
  * @author ChengXinPing
- * @time   2018/11/1 9:21
+ * @time   2018/11/28 14:46
  *
  */
-interface HomePageContract {
+interface KnowledgeListContract {
     interface View : IView {
-        fun onGetBannerSuccess(banners: List<Banner>)
+        fun onGetKonwledgeListDone(articles: ArticleBody)
     }
 
     interface Presenter : IPresenter<View> {
-        fun getBanner()
+        fun getKnowledgeList(page: Int, cid: Int)
     }
 }

@@ -32,6 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutID())
+        parseIntent()
         initView()
         initData()
     }
@@ -45,5 +46,9 @@ abstract class BaseActivity : AppCompatActivity() {
         } else {
             supportFragmentManager.popBackStack()
         }
+    }
+
+     open fun parseIntent() {
+
     }
 }

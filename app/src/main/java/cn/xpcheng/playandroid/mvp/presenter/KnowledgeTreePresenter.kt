@@ -2,7 +2,7 @@ package cn.xpcheng.playandroid.mvp.presenter
 
 import cn.xpcheng.playandroid.base.BasePresenter
 import cn.xpcheng.playandroid.mvp.contract.KnowledgeTreeContract
-import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTreeModel
+import cn.xpcheng.playandroid.mvp.model.KnowledgeTreeModel
 
 /**
  * @author ChengXinPing

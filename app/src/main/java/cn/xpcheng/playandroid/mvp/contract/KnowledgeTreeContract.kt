@@ -2,7 +2,7 @@ package cn.xpcheng.playandroid.mvp.contract
 
 import cn.xpcheng.playandroid.base.IPresenter
 import cn.xpcheng.playandroid.base.IView
-import cn.xpcheng.playandroid.mvp.model.KnowledgeTree
+import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 
 /**
  * @author ChengXinPing
