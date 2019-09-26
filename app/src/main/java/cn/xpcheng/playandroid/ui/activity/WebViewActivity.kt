@@ -1,16 +1,12 @@
 package cn.xpcheng.playandroid.ui.activity
 
-import android.net.http.SslError
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.CoordinatorLayout
 import android.view.KeyEvent
-import android.webkit.SslErrorHandler
-import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebViewClient
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.constant.Constant
+import com.google.android.material.appbar.AppBarLayout
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.NestedScrollAgentWebView
@@ -48,7 +44,7 @@ class WebViewActivity : BaseActivity() {
 
     override fun initView() {
         toolbar.apply {
-            title = "正在加载中"
+            title = "正在加载中..."
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
@@ -67,19 +63,7 @@ class WebViewActivity : BaseActivity() {
                 .setAgentWebParent(cl_main, layoutParams)
                 .useDefaultIndicator()
                 .setWebView(mWebview)
-                .setWebChromeClient(object : WebChromeClient() {
-                    override fun onReceivedTitle(view: WebView?, title: String?) {
-                        super.onReceivedTitle(view, title)
-                        title.let {
-                            toolbar.title = it
-                        }
-                    }
-                })
-                .setWebViewClient(object : WebViewClient() {
-                    override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
-                        handler?.proceed()
-                    }
-                })
+                .setWebChromeClient(mWebViewChromeClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)//打开其他应用时，弹窗咨询用户是否前往其他应用
                 .createAgentWeb()
@@ -88,6 +72,13 @@ class WebViewActivity : BaseActivity() {
 
     }
 
+
+    private val mWebViewChromeClient: com.just.agentweb.WebChromeClient? = object : com.just.agentweb.WebChromeClient() {
+        override fun onReceivedTitle(view: WebView?, title: String?) {
+            super.onReceivedTitle(view, title)
+            toolbar.title = title
+        }
+    }
 
     override fun onBackPressed() {
         mAgentWeb?.let {

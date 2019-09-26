@@ -1,6 +1,6 @@
 package cn.xpcheng.playandroid.ui.activity
 
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.KnowledgeListViewPagerAdapter
 import cn.xpcheng.playandroid.base.BaseActivity

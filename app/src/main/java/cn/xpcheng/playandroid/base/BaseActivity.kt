@@ -1,9 +1,9 @@
 package cn.xpcheng.playandroid.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 
 
 /**

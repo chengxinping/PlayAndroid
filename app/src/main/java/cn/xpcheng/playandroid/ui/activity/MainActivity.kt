@@ -1,11 +1,12 @@
 package cn.xpcheng.playandroid.ui.activity
 
-import android.support.v4.app.FragmentTransaction
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.FragmentTransaction
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.ui.fragment.*
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity() {
         }
 
         bottom_navigation.run {
-            labelVisibilityMode = 1
+            labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
             setOnNavigationItemSelectedListener { item ->
                 switchFragment(item.itemId)
                 true

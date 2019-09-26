@@ -2,9 +2,10 @@ package cn.xpcheng.playandroid.ui.fragment
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.KnowledgeTreeListAdapter
 import cn.xpcheng.playandroid.base.BaseMVPFragment
@@ -17,7 +18,6 @@ import cn.xpcheng.playandroid.utils.DisplayUtil
 import cn.xpcheng.playandroid.widget.itemDecoration.SpaceItemDecoration
 import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_refresh_recycler.*
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * @author ChengXinPing
@@ -106,7 +106,7 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         mKnowledgeTreeListAdapter.run {
             loadMoreFail()
         }
-        toast(errorMsg)
+        Toast.makeText(context!!, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
     //下拉刷新监听

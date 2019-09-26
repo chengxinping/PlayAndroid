@@ -18,8 +18,7 @@ import com.chad.library.adapter.base.BaseViewHolder
  *
  */
 class ArticleListAdapter(private val context: Context?, list: MutableList<Article>) : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article, list) {
-    override fun convert(helper: BaseViewHolder?, item: Article?) {
-        helper ?: return
+    override fun convert(helper: BaseViewHolder, item: Article?) {
         item ?: return
         helper.setText(R.id.item_tv_article_title, item.title)
                 .setText(R.id.item_tv_article_author, item.author)
