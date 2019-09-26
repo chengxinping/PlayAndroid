@@ -1,7 +1,6 @@
 package cn.xpcheng.playandroid.ui.activity
 
 import android.support.design.widget.TabLayout
-import android.view.MenuItem
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.KnowledgeListViewPagerAdapter
 import cn.xpcheng.playandroid.base.BaseActivity
@@ -73,14 +72,4 @@ class KnowledgeListActivity : BaseActivity() {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 }

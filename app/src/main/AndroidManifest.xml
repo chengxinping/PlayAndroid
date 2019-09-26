@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.KnowledgeListActivity"/>
+        <activity android:name=".ui.activity.WebViewActivity"/>
     </application>
 
 </manifest>

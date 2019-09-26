@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.ui.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
@@ -13,8 +14,10 @@ import cn.xpcheng.playandroid.mvp.contract.KnowledgeListContract
 import cn.xpcheng.playandroid.mvp.model.bean.Article
 import cn.xpcheng.playandroid.mvp.model.bean.ArticleBody
 import cn.xpcheng.playandroid.mvp.presenter.KnowledgeListPresenter
+import cn.xpcheng.playandroid.ui.activity.WebViewActivity
 import cn.xpcheng.playandroid.utils.DisplayUtil
 import cn.xpcheng.playandroid.widget.itemDecoration.SpaceItemDecoration
+import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_refresh_recycler.*
 import org.jetbrains.anko.support.v4.toast
 
@@ -38,7 +41,7 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
     //当前cid
     private var cid: Int = 0
 
-    private val data = mutableListOf<Article>()
+    private val mDatas = mutableListOf<Article>()
 
     private val mLinearLayoutManager: LinearLayoutManager by lazy {
         LinearLayoutManager(activity)
@@ -52,7 +55,7 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
     }
 
     private val mArticleListAdapt: ArticleListAdapter by lazy {
-        ArticleListAdapter(activity, data)
+        ArticleListAdapter(activity, mDatas)
     }
 
     override fun createPresenter(): KnowledgeListPresenter = KnowledgeListPresenter()
@@ -78,6 +81,16 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
 
         mArticleListAdapt.run {
             bindToRecyclerView(recycler_view)
+            onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+                if (mDatas.size != 0) {
+                    val data = mDatas[position]
+                    Intent(activity, WebViewActivity::class.java).run {
+                        putExtra(Constant.KEY_WEB_TITLE, data.title)
+                        putExtra(Constant.KEY_WEB_URL, data.link)
+                        startActivity(this)
+                    }
+                }
+            }
         }
     }
 
