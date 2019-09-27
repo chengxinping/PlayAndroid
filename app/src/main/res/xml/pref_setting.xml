@@ -1,0 +1,17 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+
+        android:title="基本设置">
+
+        <Preference
+
+            android:key="version"
+            android:layout="@layout/layout_custom_preference"
+            android:summary="https://github.com/chengxinping/PlayAndroid"
+            android:title="更新日志" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

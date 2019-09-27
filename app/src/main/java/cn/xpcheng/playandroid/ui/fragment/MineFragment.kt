@@ -1,7 +1,9 @@
 package cn.xpcheng.playandroid.ui.fragment
 
+import android.content.Intent
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseFragment
+import cn.xpcheng.playandroid.ui.activity.SettingActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
@@ -21,6 +23,11 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView() {
-        text.text = getString(R.string.title_mine)
+        cl_setting.setOnClickListener {
+            Intent(activity!!, SettingActivity::class.java).run {
+                startActivity(this)
+            }
+        }
+
     }
 }

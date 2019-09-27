@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#008577</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">@color/Teal</color>
+    <color name="colorPrimaryDark">@color/Teal</color>
+    <color name="colorAccent">@color/Teal</color>
 
 
     <color name="textColorPrimary">#616161</color>
@@ -30,6 +30,9 @@
     <color name="item_flow_layout_bg">@color/Grey200</color>
     <color name="arrow_color">@color/Grey700</color>
     <color name="sticky_header_bg">@color/Grey300</color>
+    <color name="high_level_text_color">#333333</color>
+    <color name="items_divider_color">#eaeaea</color>
+
 
 
     <color name="light_red">#e26d2e</color>

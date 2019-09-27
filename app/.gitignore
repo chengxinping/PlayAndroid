@@ -1,1 +1,3 @@
 /build
+/src/androidTest/java/cn/xpcheng/playandroid/
+/src/androidTest/java/cn/xpcheng/playandroid/ExampleInstrumentedTest.kt
