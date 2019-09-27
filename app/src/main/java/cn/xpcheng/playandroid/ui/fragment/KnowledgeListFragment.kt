@@ -91,7 +91,23 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
                     }
                 }
             }
+            setOnLoadMoreListener(onRequestLoadMoreListener, recycler_view)
         }
+    }
+
+    /**
+     * is Refresh
+     */
+    private var isRefresh = true
+
+    /**
+     * LoadMoreListener
+     */
+    private val onRequestLoadMoreListener = BaseQuickAdapter.RequestLoadMoreListener {
+        isRefresh = false
+        swipeRefreshLayout.isRefreshing = false
+        val page = mDatas.size / 20
+        mPresenter!!.getKnowledgeList(page, cid)
     }
 
     override fun initData() {
@@ -101,13 +117,22 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
     override fun onGetKonwledgeListDone(articles: ArticleBody) {
         articles.datas.let {
             mArticleListAdapt.run {
-                replaceData(it)
+                if (isRefresh)
+                    replaceData(it)
+                else
+                    addData(it)
+                val size = it.size
+                if (size < articles.size)
+                    loadMoreEnd(isRefresh)
+                else
+                    loadMoreComplete()
             }
         }
     }
 
     //下拉刷新监听
     private val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
+        isRefresh = true
         swipeRefreshLayout.isRefreshing = true
         mArticleListAdapt.setEnableLoadMore(false)
         mPresenter!!.getKnowledgeList(0, cid)
@@ -121,10 +146,21 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
     override fun hideLoading() {
         super.hideLoading()
         swipeRefreshLayout.isRefreshing = false
+        if (isRefresh) {
+            mArticleListAdapt.run {
+                setEnableLoadMore(true)
+            }
+        }
     }
 
     override fun showError(errorMsg: String) {
         super.showError(errorMsg)
         Toast.makeText(context!!, errorMsg, Toast.LENGTH_SHORT).show()
+        mArticleListAdapt.run {
+            if (isRefresh)
+                setEnableLoadMore(true)
+            else
+                loadMoreFail()
+        }
     }
 }
