@@ -2,6 +2,7 @@ package cn.xpcheng.playandroid.mvp.model
 
 import cn.xpcheng.playandroid.base.BaseModel
 import cn.xpcheng.playandroid.http.RetrofitManager
+import cn.xpcheng.playandroid.mvp.contract.KnowledgeTreeContract
 import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
 import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 import io.reactivex.Observable
@@ -13,8 +14,9 @@ import io.reactivex.schedulers.Schedulers
  * @time   2018/11/7 15:46
  *
  */
-class KnowledgeTreeModel : BaseModel() {
-    fun getKnowledgeTree(): Observable<BaseResponse<List<KnowledgeTree>>> {
+class KnowledgeTreeModel : BaseModel(), KnowledgeTreeContract.Model {
+
+    override fun getKnowledgeTree(): Observable<BaseResponse<List<KnowledgeTree>>> {
         return RetrofitManager.service.getKnowledgeTree()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

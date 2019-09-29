@@ -10,5 +10,10 @@
     <string name="my_collect">我的收藏</string>
     <string name="user_todo">待办清单</string>
     <string name="setting">系统设置</string>
+    <string name="navigation">常用导航</string>
+
+
+    <string name="network_unavailable_tip">网络连接不可用,请检查网络设置!</string>
+
 
 </resources>

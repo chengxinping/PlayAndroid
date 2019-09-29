@@ -7,9 +7,13 @@ import java.io.Serializable
  * @time   2018/11/1 9:25
  *
  */
-data class BaseResponse<T>(val data: T,
-                           val errorCode: Int,
-                           val errorMsg: String)
+
+open class BaseBean {
+    var errorCode: Int = 0
+    var errorMsg: String = ""
+}
+
+data class BaseResponse<T>(val data: T) : BaseBean()
 
 
 /**

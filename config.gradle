@@ -59,8 +59,11 @@ ext {
             "flow-layout"           : 'com.hyman:flowlayout-lib:1.1.2',
             "logger"                : 'com.orhanobut:logger:2.2.0',
             "android-autosize"      : 'me.jessyan:autosize:1.1.2',
+            //md风格对话框
             "material-dialogs-core" : 'com.afollestad.material-dialogs:core:3.1.1',
-            "material-dialogs-color": 'com.afollestad.material-dialogs:color:3.1.1'
+            "material-dialogs-color": 'com.afollestad.material-dialogs:color:3.1.1',
+            //竖向分类布局
+            "vertical-tabLayout"    : 'q.rorbin:VerticalTabLayout:1.2.5'
     ]
     otherDeps = [
             "glideCompiler": "com.github.bumptech.glide:compiler:${dependVersion.glideSdkVersion}",

@@ -12,10 +12,11 @@ import io.reactivex.disposables.Disposable
  * @time   2018/10/31 11:36
  *
  */
-abstract class BasePresenter<V : IView> : IPresenter<V>, LifecycleObserver {
+abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleObserver {
 
-    var mView: V? = null
-        private set
+    protected var mModel: M? = null
+    protected var mView: V? = null
+
 
     private val isViewAttached: Boolean
         get() = mView != null
@@ -23,39 +24,52 @@ abstract class BasePresenter<V : IView> : IPresenter<V>, LifecycleObserver {
 
     private var mCompositeDisposable: CompositeDisposable? = null
 
+    /**
+     * 创建model
+     */
+    open fun createModel(): M? = null
+
     override fun attachView(mView: V) {
-        mCompositeDisposable = CompositeDisposable()
         this.mView = mView
+        mModel = createModel()
         if (mView is LifecycleOwner) {
             mView.lifecycle.addObserver(this)
+            if (mModel != null && mModel is LifecycleObserver) {
+                mView.lifecycle.addObserver(mModel as LifecycleObserver)
+            }
         }
 
     }
 
     override fun detachView() {
-        //解绑
+        // 保证activity结束时取消所有正在执行的订阅
         unDispose()
+        mModel?.onDetach()
         mView = null
+        mModel = null
+        mCompositeDisposable = null
     }
 
     open fun checkViewAttached() {
         if (!isViewAttached) throw MvpViewNotAttachedException()
     }
 
-    open fun addSubscription(disposable: Disposable) {
-        mCompositeDisposable?.add(disposable)
+    open fun addDisposable(disposable: Disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        disposable?.let {
+            mCompositeDisposable?.add(it)
+        }
     }
 
     private fun unDispose() {
-        if (mCompositeDisposable != null) {
-            mCompositeDisposable!!.clear()
-        }
+        mCompositeDisposable?.clear()  // 保证Activity结束时取消
         mCompositeDisposable = null
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private fun onDestroy(owner: LifecycleOwner) {
-        detachView()
         owner.lifecycle.removeObserver(this)
     }
 

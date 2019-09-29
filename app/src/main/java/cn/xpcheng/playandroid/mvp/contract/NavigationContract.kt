@@ -2,19 +2,18 @@ package cn.xpcheng.playandroid.mvp.contract
 
 import cn.xpcheng.playandroid.base.IPresenter
 import cn.xpcheng.playandroid.base.IView
-import cn.xpcheng.playandroid.mvp.model.bean.Banner
 
 /**
  * @author ChengXinPing
- * @time   2018/11/1 9:21
+ * @time   2019/9/29 10:54
  *
  */
-interface HomePageContract {
+interface NavigationContract {
     interface View : IView {
-        fun onGetBannerSuccess(banners: List<Banner>)
+
     }
 
     interface Presenter : IPresenter<View> {
-        fun getBanner()
+
     }
 }

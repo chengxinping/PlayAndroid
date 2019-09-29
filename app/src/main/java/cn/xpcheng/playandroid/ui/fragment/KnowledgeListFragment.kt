@@ -114,7 +114,7 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
         mPresenter!!.getKnowledgeList(0, cid)
     }
 
-    override fun onGetKonwledgeListDone(articles: ArticleBody) {
+    override fun onGetKnowledgeListDone(articles: ArticleBody) {
         articles.datas.let {
             mArticleListAdapt.run {
                 if (isRefresh)
