@@ -57,13 +57,14 @@
 
         <TextView
             android:id="@+id/item_tv_article_date"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
             android:includeFontPadding="false"
             android:textColor="@color/item_date"
             android:textSize="@dimen/sp_12"
+            android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/item_iv_article_love"
             tools:text="2018-11-28"/>

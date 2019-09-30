@@ -1,9 +1,6 @@
 package cn.xpcheng.playandroid.api
 
-import cn.xpcheng.playandroid.mvp.model.bean.ArticleBody
-import cn.xpcheng.playandroid.mvp.model.bean.Banner
-import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
-import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
+import cn.xpcheng.playandroid.mvp.model.bean.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,5 +29,11 @@ interface ApiService {
      *cid 分类的id，上述二级目录的id  页码：拼接在链接上，从0开始。
      */
     @GET("article/list/{page}/json")
-    fun getKnowledegList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleBody>>
+    fun getKnowledgeList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleBody>>
+
+    /**
+     * 获取导航数据
+     */
+    @GET("navi/json")
+    fun getNavigation(): Observable<BaseResponse<List<NavigationBean>>>
 }

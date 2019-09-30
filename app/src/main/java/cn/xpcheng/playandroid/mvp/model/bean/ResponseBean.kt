@@ -93,3 +93,10 @@ data class Tag(
         val name: String,
         val url: String
 )
+
+//导航数据
+data class NavigationBean(
+        val articles: List<Article>,
+        val cid: Int,
+        val name: String
+)

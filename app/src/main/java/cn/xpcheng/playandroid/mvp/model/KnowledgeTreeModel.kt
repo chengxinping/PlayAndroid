@@ -6,8 +6,6 @@ import cn.xpcheng.playandroid.mvp.contract.KnowledgeTreeContract
 import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
 import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 /**
  * @author ChengXinPing
@@ -18,7 +16,5 @@ class KnowledgeTreeModel : BaseModel(), KnowledgeTreeContract.Model {
 
     override fun getKnowledgeTree(): Observable<BaseResponse<List<KnowledgeTree>>> {
         return RetrofitManager.service.getKnowledgeTree()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
     }
 }

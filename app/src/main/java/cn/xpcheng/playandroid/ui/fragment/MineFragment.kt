@@ -3,6 +3,7 @@ package cn.xpcheng.playandroid.ui.fragment
 import android.content.Intent
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseFragment
+import cn.xpcheng.playandroid.ui.activity.NavigationActivity
 import cn.xpcheng.playandroid.ui.activity.SettingActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -25,6 +26,12 @@ class MineFragment : BaseFragment() {
     override fun initView() {
         cl_setting.setOnClickListener {
             Intent(activity!!, SettingActivity::class.java).run {
+                startActivity(this)
+            }
+        }
+
+        cl_navigation.setOnClickListener {
+            Intent(activity!!, NavigationActivity::class.java).run {
                 startActivity(this)
             }
         }

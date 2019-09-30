@@ -30,7 +30,7 @@ class SettingActivity : BaseActivity() {
         }
 
         toolbar.run {
-            title = "设置"
+            title = getString(R.string.setting)
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }

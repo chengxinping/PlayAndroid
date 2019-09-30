@@ -6,8 +6,6 @@ import cn.xpcheng.playandroid.mvp.contract.KnowledgeListContract
 import cn.xpcheng.playandroid.mvp.model.bean.ArticleBody
 import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 /**
  * @author ChengXinPing
@@ -16,8 +14,6 @@ import io.reactivex.schedulers.Schedulers
  */
 class KnowledgeListModel : BaseModel(), KnowledgeListContract.Model {
     override fun getKnowledgeList(page: Int, cid: Int): Observable<BaseResponse<ArticleBody>> {
-        return RetrofitManager.service.getKnowledegList(page, cid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        return RetrofitManager.service.getKnowledgeList(page, cid)
     }
 }

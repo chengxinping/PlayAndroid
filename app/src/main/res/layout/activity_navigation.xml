@@ -9,7 +9,6 @@
     <include layout="@layout/toolbar" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,21 +29,20 @@
                 app:indicator_gravity="fill"
                 app:tab_height="@dimen/dp_50"
                 app:tab_margin="@dimen/dp_16"
-                app:tab_mode="scrollable">
+                app:tab_mode="scrollable" />
 
-                <View
-                    android:id="@+id/navigation_divider"
-                    android:layout_width="@dimen/dp_05"
-                    android:layout_height="match_parent"
-                    android:background="@color/line_divider" />
+            <View
+                android:id="@+id/navigation_divider"
+                android:layout_width="@dimen/dp_05"
+                android:layout_height="match_parent"
+                android:background="@color/line_divider" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_navigation"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbarSize="@dimen/dp_2"
-                    android:scrollbars="vertical" />
-            </q.rorbin.verticaltablayout.VerticalTabLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbarSize="@dimen/dp_2"
+                android:scrollbars="vertical" />
 
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
