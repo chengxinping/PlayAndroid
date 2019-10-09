@@ -97,10 +97,10 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() {
-        mAgentWeb?.webLifeCycle?.onResume()
-        super.onResume()
-    }
+//    override fun onResume() {
+//        mAgentWeb?.webLifeCycle?.onResume()
+//        super.onResume()
+//    }
 
     override fun onPause() {
         mAgentWeb?.webLifeCycle?.onPause()

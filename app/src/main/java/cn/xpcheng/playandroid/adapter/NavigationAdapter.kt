@@ -3,7 +3,7 @@ package cn.xpcheng.playandroid.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
+import android.widget.TextView
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.constant.Constant
 import cn.xpcheng.playandroid.mvp.model.bean.Article
@@ -26,30 +26,34 @@ class NavigationAdapter(datas: MutableList<NavigationBean>)
     : BaseQuickAdapter<NavigationBean, BaseViewHolder>(R.layout.item_navigation, datas) {
 
     override fun convert(helper: BaseViewHolder, item: NavigationBean?) {
-        helper?.setText(R.id.tv_item_title, item?.name)
-                .getView<TagFlowLayout>(R.id.tag_item_name).run {
-                    adapter = object : TagAdapter<Article>(item?.articles as List<Article>) {
-                        override fun getView(parent: FlowLayout?, position: Int, t: Article?): View {
-                            val tv = LayoutInflater.from(context).inflate(R.layout.item_navigation_tag, this@run, false) as AppCompatTextView
-                            tv.run {
-                                setPadding(DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f))
-                                text = t?.title
-                                setTextColor(ColorUtils.randomColor())
-                            }
-
-                            setOnTagClickListener { view, position, parent ->
-                                Intent(context, WebViewActivity::class.java).run {
-                                    putExtra(Constant.KEY_WEB_URL, t?.link)
-                                    putExtra(Constant.KEY_WEB_TITLE, t?.title)
-                                    context.startActivity(this)
-                                }
-                                true
-                            }
-
-                            return tv
-                        }
-
+        item ?: return
+        helper.setText(R.id.tv_item_title, item.name)
+        val flowLayout = helper.getView<TagFlowLayout>(R.id.tag_item_name)
+        val articles = item.articles
+        flowLayout.run {
+            adapter = object : TagAdapter<Article>(articles) {
+                override fun getView(parent: FlowLayout?, position: Int, t: Article?): View {
+                    val tv: TextView = LayoutInflater.from(parent?.context).inflate(R.layout.item_navigation_tag,
+                            flowLayout, false) as TextView
+                    tv.run {
+                        setPadding(DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f))
+                        text = t?.title
+                        setTextColor(ColorUtils.randomColor())
                     }
+
+                    setOnTagClickListener { view, position, parent ->
+                        Intent(context, WebViewActivity::class.java).run {
+                            putExtra(Constant.KEY_WEB_TITLE, articles[position].title)
+                            putExtra(Constant.KEY_WEB_URL, articles[position].link)
+                            context.startActivity(this)
+                        }
+                        true
+                    }
+
+                    return tv
                 }
+
+            }
+        }
     }
 }

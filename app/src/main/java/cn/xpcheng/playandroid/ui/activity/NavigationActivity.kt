@@ -24,7 +24,7 @@ import q.rorbin.verticaltablayout.widget.TabView
  */
 class NavigationActivity : BaseMVPActivity<NavigationContract.View, NavigationContract.Presenter>(), NavigationContract.View {
 
-    private var datas = mutableListOf<NavigationBean>();
+    private var datas = mutableListOf<NavigationBean>()
 
     private val mAdapter: NavigationAdapter by lazy {
         NavigationAdapter(datas)
