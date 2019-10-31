@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.adapter
 
 import android.content.Context
+import android.text.Html
 import androidx.core.content.ContextCompat
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.mvp.model.bean.NavigationBean
@@ -29,7 +30,7 @@ class NavigationTagAdapter(context: Context?, list: List<NavigationBean>) : TabA
 
     override fun getTitle(position: Int): ITabView.TabTitle {
         return ITabView.TabTitle.Builder()
-                .setContent(list[position].name)
+                .setContent(Html.fromHtml(list[position].name).toString())
                 .setTextColor(ContextCompat.getColor(context, R.color.colorAccent),
                         ContextCompat.getColor(context, R.color.Grey500))
                 .build()

@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.adapter
 
 import android.content.Context
+import android.text.Html
 import android.text.TextUtils
 import android.view.View
 import android.widget.ImageView
@@ -20,7 +21,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 class ArticleListAdapter(private val context: Context?, list: MutableList<Article>) : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article, list) {
     override fun convert(helper: BaseViewHolder, item: Article?) {
         item ?: return
-        helper.setText(R.id.item_tv_article_title, item.title)
+        helper.setText(R.id.item_tv_article_title, Html.fromHtml(item.title))
                 .setText(R.id.item_tv_article_author, item.author)
                 .setText(R.id.item_tv_article_date, item.niceDate)
                 .setImageResource(R.id.item_iv_article_love,

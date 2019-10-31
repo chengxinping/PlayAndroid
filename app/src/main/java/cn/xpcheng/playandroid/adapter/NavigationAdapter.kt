@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.adapter
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -37,7 +38,7 @@ class NavigationAdapter(datas: MutableList<NavigationBean>)
                             flowLayout, false) as TextView
                     tv.run {
                         setPadding(DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f), DisplayUtil.dp2px(context, 10f))
-                        text = t?.title
+                        text = Html.fromHtml(t?.title).toString()
                         setTextColor(ColorUtils.randomColor())
                     }
 

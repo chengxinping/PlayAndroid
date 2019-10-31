@@ -36,4 +36,25 @@ interface ApiService {
      */
     @GET("navi/json")
     fun getNavigation(): Observable<BaseResponse<List<NavigationBean>>>
+
+    /**
+     * 获取项目分类
+     */
+    @GET("project/tree/json")
+    fun getProjectTree(): Observable<BaseResponse<List<ProjectTreeBean>>>
+
+    /**
+     * 获取某个项目分类下全部数据
+     * @param page 分页数据
+     * @param cid 项目分类id
+     */
+    @GET("project/list/{page}/json")
+    fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleBody>>
+
+    /**
+     * 最新项目
+     * @param page 分页数据
+     */
+    @GET("article/listproject/{page}/json")
+    fun getRecentlyProjects(@Path("page") page: Int): Observable<BaseResponse<ArticleBody>>
 }

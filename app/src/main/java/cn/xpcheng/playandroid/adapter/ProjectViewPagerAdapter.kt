@@ -5,22 +5,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import cn.xpcheng.playandroid.mvp.model.bean.Knowledge
-import cn.xpcheng.playandroid.ui.fragment.KnowledgeListFragment
+import cn.xpcheng.playandroid.mvp.model.bean.ProjectTreeBean
+import cn.xpcheng.playandroid.ui.fragment.ProjectListFragment
 
 /**
  * @author ChengXinPing
- * @time   2018/11/28 14:35
+ * @time   2019/10/17 14:47
  *
  */
-class KnowledgeListViewPagerAdapter(fm: FragmentManager, val list: List<Knowledge>) : FragmentStatePagerAdapter(fm) {
+class ProjectViewPagerAdapter(fm: FragmentManager, val list: List<ProjectTreeBean>) : FragmentStatePagerAdapter(fm) {
 
     private val fragments = mutableListOf<Fragment>()
 
     init {
         fragments.clear()
         list.forEach {
-            fragments.add(KnowledgeListFragment.getInstance(it.id))
+            fragments.add(ProjectListFragment.getInstance(it.id))
         }
     }
 
@@ -29,8 +29,14 @@ class KnowledgeListViewPagerAdapter(fm: FragmentManager, val list: List<Knowledg
     override fun getCount(): Int = list.size
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return Html.fromHtml(list[position].name)
+
+        if (list[position].id == -1) {
+            return "最新项目"
+        } else {
+            return Html.fromHtml(list[position].name)
+        }
     }
 
     override fun getItemPosition(`object`: Any): Int = PagerAdapter.POSITION_NONE
+
 }

@@ -100,3 +100,15 @@ data class NavigationBean(
         val cid: Int,
         val name: String
 )
+
+//项目分类
+data class ProjectTreeBean(
+        val children: List<Any>,
+        val courseId: Int,
+        val id: Int,
+        val name: String,
+        val order: Long,
+        val parentChapterId: Int,
+        val userControlSetTop: Boolean,
+        val visible: Int
+)
