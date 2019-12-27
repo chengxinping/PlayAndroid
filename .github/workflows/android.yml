@@ -19,17 +19,8 @@ jobs:
         run: ./gradlew build
       - name: 编译Debu包
         run: ./gradlew assembleDebug
-      - name: 发布Debug包
-        branding:
-          icon: "package"
-          color: "red"
-        description: "编译发布到GitHub"
-        inputs:
-          GITHUB_TOKEN:
-            description: "Github secret token to allow automated publishing of APK to release."
-        runs:
-          using: "docker"
-          image: "Dockerfile"
+      - name: 发布到GitHub
+        uses: ShaunLWM/action-release-debugapk@master
         env:
           GITHUB_TOKEN: ${{ secrets.SecRet }} # github 项目secert key 名字必须和设置的一致， 并且token具有相关权限
           APP_FOLDER: app
