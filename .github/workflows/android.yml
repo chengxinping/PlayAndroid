@@ -9,18 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: set up JDK 1.8
+      - name: 配置JDK环境
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Make Gradle executable
+      - name: Ubuntu设置编译脚本可执行权限
         run: chmod +x ./gradlew
-      - name: Build with Gradle
+      - name: 编译 Gradle
         run: ./gradlew build
-      - name: Build Debug APK
+      - name: 编译Debu包
         run: ./gradlew assembleDebug
-      - name: Releasing using Hub
-        uses: ShaunLWM/action-release-debugapk@master
+      - name: 发布Debug包
+        branding:
+          icon: "package"
+          color: "red"
+        description: "编译发布到GitHub"
+        inputs:
+          GITHUB_TOKEN:
+            description: "Github secret token to allow automated publishing of APK to release."
+        runs:
+          using: "docker"
+          image: "Dockerfile"
         env:
           GITHUB_TOKEN: ${{ secrets.SecRet }} # github 项目secert key 名字必须和设置的一致， 并且token具有相关权限
           APP_FOLDER: app
