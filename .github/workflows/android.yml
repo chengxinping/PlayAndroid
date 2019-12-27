@@ -22,6 +22,6 @@ jobs:
       - name: 发布到GitHub
         uses: ShaunLWM/action-release-debugapk@master
         env:
-          GITHUB_TOKEN: ${{ secrets.CXP_PlayAndroid }} # github 项目secert key 名字必须和设置的一致， 并且token具有相关权限
+          GITHUB_TOKEN: ${{ secrets.PlayAndroid }} # github 项目secert key 名字必须和设置的一致， 并且token具有相关权限
           APP_FOLDER: app
           RELEASE_TITLE: Version 0.6.0 # 版本名称
