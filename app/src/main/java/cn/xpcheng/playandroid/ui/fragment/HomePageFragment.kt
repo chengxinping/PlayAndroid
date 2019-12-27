@@ -2,7 +2,6 @@ package cn.xpcheng.playandroid.ui.fragment
 
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_wechat.*
 
 /**
  * @author ChengXinPing
@@ -15,12 +14,12 @@ class HomePageFragment : BaseFragment() {
         fun getInstance(): HomePageFragment = HomePageFragment()
     }
 
-    override fun getLayoutID(): Int = R.layout.fragment_wechat
+    override fun getLayoutID(): Int = R.layout.fragment_mine
 
     override fun initData() {
     }
 
     override fun initView() {
-        text.text = getString(R.string.title_home)
+
     }
 }

@@ -12,16 +12,16 @@ import io.reactivex.Observable
  * @time   2019/10/17 14:29
  *
  */
-interface ProjectContract {
+interface ListContract {
     interface View : IView {
-        fun onGetProjectTreeSuccess(list: List<ProjectTreeBean>)
+        fun onGetTreeSuccess(list: List<ProjectTreeBean>)
     }
 
     interface Presenter : IPresenter<View> {
-        fun getProgectTree()
+        fun getTree()
     }
 
     interface Model : IModel {
-        fun getProgectTree(): Observable<BaseResponse<List<ProjectTreeBean>>>
+        fun getTree(): Observable<BaseResponse<List<ProjectTreeBean>>>
     }
 }

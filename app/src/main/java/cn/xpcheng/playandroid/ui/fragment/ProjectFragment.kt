@@ -3,7 +3,7 @@ package cn.xpcheng.playandroid.ui.fragment
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.ProjectViewPagerAdapter
 import cn.xpcheng.playandroid.base.BaseMVPFragment
-import cn.xpcheng.playandroid.mvp.contract.ProjectContract
+import cn.xpcheng.playandroid.mvp.contract.ListContract
 import cn.xpcheng.playandroid.mvp.model.bean.ProjectTreeBean
 import cn.xpcheng.playandroid.mvp.presenter.ProjectPresenter
 import com.google.android.material.tabs.TabLayout
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_project.*
  * @time   2018/11/1 17:24
  *
  */
-class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(), ProjectContract.View {
+class ProjectFragment : BaseMVPFragment<ListContract.View, ProjectPresenter>(), ListContract.View {
 
     private var mData = mutableListOf<ProjectTreeBean>()
 
@@ -56,14 +56,23 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(
 
     }
 
+    override fun showLoading() {
+        super.showLoading()
+        //TODO
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+    }
+
     override fun initData() {
         val recentlyProject = ProjectTreeBean(mutableListOf(), -1, -1, "", -1, -1, false, -1)
         mData.add(recentlyProject)
-        mPresenter!!.getProgectTree()
+        mPresenter!!.getTree()
     }
 
 
-    override fun onGetProjectTreeSuccess(list: List<ProjectTreeBean>) {
+    override fun onGetTreeSuccess(list: List<ProjectTreeBean>) {
 
         list.let {
             mData.addAll(it)

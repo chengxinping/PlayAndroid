@@ -57,4 +57,16 @@ interface ApiService {
      */
     @GET("article/listproject/{page}/json")
     fun getRecentlyProjects(@Path("page") page: Int): Observable<BaseResponse<ArticleBody>>
+
+    /**
+     * 获取公众号列表
+     */
+    @GET("wxarticle/chapters/json")
+    fun getWechatTree(): Observable<BaseResponse<List<ProjectTreeBean>>>
+
+    /**
+     * 查看某个公众号历史数据
+     */
+    @GET("wxarticle/list/{cid}/{page}/json")
+    fun getWechatList(@Path("cid") cid: Int, @Path("page") page: Int): Observable<BaseResponse<ArticleBody>>
 }

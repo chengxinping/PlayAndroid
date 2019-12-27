@@ -101,7 +101,7 @@ data class NavigationBean(
         val name: String
 )
 
-//项目分类
+//项目 公众号分类
 data class ProjectTreeBean(
         val children: List<Any>,
         val courseId: Int,

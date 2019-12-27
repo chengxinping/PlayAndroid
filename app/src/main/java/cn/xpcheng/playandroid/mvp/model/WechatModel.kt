@@ -7,14 +7,15 @@ import cn.xpcheng.playandroid.mvp.model.bean.BaseResponse
 import cn.xpcheng.playandroid.mvp.model.bean.ProjectTreeBean
 import io.reactivex.Observable
 
+
 /**
  * @author ChengXinPing
- * @time   2019/10/17 14:36
+ * @time   2019/12/27 14:15
  *
  */
-class ProjectModel : BaseModel(), ListContract.Model {
-
+class WechatModel : BaseModel(), ListContract.Model {
     override fun getTree(): Observable<BaseResponse<List<ProjectTreeBean>>> {
-        return RetrofitManager.service.getProjectTree()
+        return RetrofitManager.service.getWechatTree()
     }
+
 }
