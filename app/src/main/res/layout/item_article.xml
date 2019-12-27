@@ -92,7 +92,6 @@
             android:id="@+id/item_iv_article_love"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            android:layout_alignParentfRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp_10"
             app:layout_constraintBottom_toTopOf="parent"
