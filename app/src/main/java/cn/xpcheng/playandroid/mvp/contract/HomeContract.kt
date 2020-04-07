@@ -19,6 +19,8 @@ interface HomeContract {
         fun setBanner(banner: List<Banner>)
 
         fun setHomeData(articleBody: ArticleBody)
+
+        fun scrollToTop()
     }
 
     interface Presenter : IPresenter<View> {

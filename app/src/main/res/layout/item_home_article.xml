@@ -92,15 +92,14 @@
         <TextView
             android:id="@+id/tv_item_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_8"
             android:layout_marginRight="@dimen/dp_10"
             android:ellipsize="end"
             android:lines="2"
             android:textColor="@color/high_level_text_color"
-            android:textSize="@dimen/sp_14"
-            android:textStyle="bold"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintTop_toBottomOf="@id/tv_item_time"
             tools:text="每日一问 别慌，你 post 一个 Runnable ，在下一帧就可以拿到了。这种说法对吗？" />
 

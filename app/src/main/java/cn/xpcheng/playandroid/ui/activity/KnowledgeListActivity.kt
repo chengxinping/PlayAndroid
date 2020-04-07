@@ -1,12 +1,13 @@
 package cn.xpcheng.playandroid.ui.activity
 
-import com.google.android.material.tabs.TabLayout
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.KnowledgeListViewPagerAdapter
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.constant.Constant
 import cn.xpcheng.playandroid.mvp.model.bean.Knowledge
 import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
+import cn.xpcheng.playandroid.ui.fragment.KnowledgeListFragment
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_knowledge_list.*
 
 /**
@@ -50,6 +51,14 @@ class KnowledgeListActivity : BaseActivity() {
         tl_knowledge_list.run {
             setupWithViewPager(viewPager_knowledge)
             addOnTabSelectedListener(onTabSelectedListener)
+        }
+
+        fab.setOnClickListener {
+            if (mViewPagerAdapter.count == 0) {
+                return@setOnClickListener
+            }
+
+            (mViewPagerAdapter.getItem(viewPager_knowledge.currentItem) as KnowledgeListFragment).scrollToTop()
         }
     }
 

@@ -5,7 +5,7 @@ ext {
             minSdkVersion    : 21,
             targetSdkVersion : 28,
             versionCode      : 1,
-            versionName      : "0.8.0"
+            versionName      : "0.8.5"
     ]
     dependVersion = [
             okhttpVersion     : "3.14.3",

@@ -15,6 +15,8 @@ import io.reactivex.Observable
 interface ProjectListContract {
     interface View : IView {
         fun onGetProjectListSuccess(articleBody: ArticleBody)
+
+        fun scrollToTop()
     }
 
     interface Presenter : IPresenter<View> {

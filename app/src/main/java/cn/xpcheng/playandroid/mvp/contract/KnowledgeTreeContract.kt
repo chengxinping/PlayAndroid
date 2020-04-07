@@ -15,6 +15,8 @@ import io.reactivex.Observable
 interface KnowledgeTreeContract {
     interface View : IView {
         fun onGetKnowledgeTreeSuccess(knowledgeTree: List<KnowledgeTree>)
+
+        fun scrollToTop()
     }
 
     interface Presenter : IPresenter<View> {

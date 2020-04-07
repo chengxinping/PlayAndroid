@@ -1,7 +1,9 @@
 package cn.xpcheng.playandroid.ui.activity
 
+import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
@@ -17,6 +19,8 @@ class MainActivity : BaseActivity() {
     private var mProjectFragment: ProjectFragment? = null
     private var mTreeFragment: KnowledgeTreeFragment? = null
     private var mMineFragment: MineFragment? = null
+
+    private var mIndex: Int = R.id.navigation_home
 
 
     override fun getLayoutID(): Int = R.layout.activity_main
@@ -35,16 +39,37 @@ class MainActivity : BaseActivity() {
             }
         }
         switchFragment(R.id.navigation_home)
+
+        fab.setOnClickListener {
+            when (mIndex) {
+                R.id.navigation_home -> {
+                    mHomePageFragment?.scrollToTop()
+                }
+                R.id.navigation_wechat -> {
+                    mWechatFragment?.scrollToTop()
+                }
+                R.id.navigation_project -> {
+                    mProjectFragment?.scrollToTop()
+                }
+                R.id.navigation_tree -> {
+                    mTreeFragment?.scrollToTop()
+
+                }
+            }
+        }
     }
 
     override fun initData() {
     }
 
+    @SuppressLint("RestrictedApi")
     private fun switchFragment(id: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
+        mIndex = id
         when (id) {
             R.id.navigation_home -> {
+                fab.visibility = View.VISIBLE
                 toolbar.title = getString(R.string.title_home)
 
                 if (mHomePageFragment == null) {
@@ -55,6 +80,7 @@ class MainActivity : BaseActivity() {
                 }
             }
             R.id.navigation_wechat -> {
+                fab.visibility = View.VISIBLE
                 toolbar.title = getString(R.string.title_wechat)
                 if (mWechatFragment == null) {
                     mWechatFragment = WechatFragment.getInstance()
@@ -64,6 +90,7 @@ class MainActivity : BaseActivity() {
                 }
             }
             R.id.navigation_project -> {
+                fab.visibility = View.VISIBLE
                 toolbar.title = getString(R.string.title_project)
                 if (mProjectFragment == null) {
                     mProjectFragment = ProjectFragment.getInstance()
@@ -73,6 +100,7 @@ class MainActivity : BaseActivity() {
                 }
             }
             R.id.navigation_tree -> {
+                fab.visibility = View.VISIBLE
                 toolbar.title = getString(R.string.title_tree)
                 if (mTreeFragment == null) {
                     mTreeFragment = KnowledgeTreeFragment.getInstance()
@@ -82,6 +110,7 @@ class MainActivity : BaseActivity() {
                 }
             }
             R.id.navigation_mine -> {
+                fab.visibility = View.GONE
                 toolbar.title = getString(R.string.title_mine)
                 if (mMineFragment == null) {
                     mMineFragment = MineFragment.getInstance()

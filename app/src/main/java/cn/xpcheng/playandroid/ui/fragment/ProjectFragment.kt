@@ -82,4 +82,11 @@ class ProjectFragment : BaseMVPFragment<ListContract.View, ProjectPresenter>(), 
             }
         }
     }
+
+    override fun scrollToTop() {
+        if (mAdapter.count == 0) {
+            return
+        }
+        (mAdapter.getItem(vp_project.currentItem)  as ProjectListFragment).scrollToTop()
+    }
 }

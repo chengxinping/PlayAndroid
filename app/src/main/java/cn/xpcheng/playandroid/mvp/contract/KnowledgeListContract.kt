@@ -15,6 +15,8 @@ import io.reactivex.Observable
 interface KnowledgeListContract {
     interface View : IView {
         fun onGetKnowledgeListDone(articles: ArticleBody)
+
+        fun scrollToTop()
     }
 
     interface Presenter : IPresenter<View> {

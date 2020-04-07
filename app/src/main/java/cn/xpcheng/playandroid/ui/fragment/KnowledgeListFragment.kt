@@ -130,6 +130,16 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
         }
     }
 
+    override fun scrollToTop() {
+        recycler_view.run {
+            if (mLinearLayoutManager.findFirstVisibleItemPosition() > 20) {
+                scrollToPosition(0)
+            } else {
+                smoothScrollToPosition(0)
+            }
+        }
+    }
+
     //下拉刷新监听
     private val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
         isRefresh = true

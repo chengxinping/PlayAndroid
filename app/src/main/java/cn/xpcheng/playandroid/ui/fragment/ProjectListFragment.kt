@@ -166,5 +166,15 @@ class ProjectListFragment : BaseMVPFragment<ProjectListContract.View, ProjectLis
         }
     }
 
+    override fun scrollToTop() {
+        recycler_view.run {
+            if (mLinearLayoutManager.findFirstVisibleItemPosition() > 20) {
+                scrollToPosition(0)
+            } else {
+                smoothScrollToPosition(0)
+            }
+        }
+    }
+
 
 }

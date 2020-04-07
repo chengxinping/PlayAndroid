@@ -80,6 +80,13 @@ class WechatFragment : BaseMVPFragment<ListContract.View, WechatPresenter>(), Li
         }
     }
 
+    override fun scrollToTop() {
+        if (mAdapter.count == 0) {
+            return
+        }
+        (mAdapter.getItem(vp_project.currentItem)  as KnowledgeListFragment).scrollToTop()
+    }
+
     override fun createPresenter(): WechatPresenter = WechatPresenter()
 
 }

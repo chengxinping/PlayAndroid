@@ -88,6 +88,16 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         }
     }
 
+    override fun scrollToTop() {
+        recycler_view.run {
+            if (mLinearLayoutManager.findFirstVisibleItemPosition() > 20) {
+                scrollToPosition(0)
+            } else {
+                smoothScrollToPosition(0)
+            }
+        }
+    }
+
     override fun showLoading() {
         super.showLoading()
         swipeRefreshLayout.isRefreshing = true

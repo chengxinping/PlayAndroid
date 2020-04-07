@@ -15,6 +15,8 @@ import io.reactivex.Observable
 interface ListContract {
     interface View : IView {
         fun onGetTreeSuccess(list: List<ProjectTreeBean>)
+
+        fun scrollToTop()
     }
 
     interface Presenter : IPresenter<View> {
