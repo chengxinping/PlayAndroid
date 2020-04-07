@@ -1,5 +1,7 @@
 package cn.xpcheng.playandroid.base
 
+import android.widget.Toast
+
 /**
  * @author ChengXinPing
  * @time   2018/10/31 16:18
@@ -28,5 +30,9 @@ abstract class BaseMVPActivity<in V : IView, P : IPresenter<V>> : BaseActivity()
             mPresenter!!.detachView()
         }
         mPresenter = null
+    }
+
+    override fun showError(errorMsg: String) {
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
     }
 }

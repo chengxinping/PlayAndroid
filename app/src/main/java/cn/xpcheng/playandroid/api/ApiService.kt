@@ -24,12 +24,27 @@ interface ApiService {
     @GET("tree/json")
     fun getKnowledgeTree(): Observable<BaseResponse<List<KnowledgeTree>>>
 
-    /**知识体系下面的文章
+    /**分类下面的文章
      * http://www.wanandroid.com/article/list/0/json?cid=60
      *cid 分类的id，上述二级目录的id  页码：拼接在链接上，从0开始。
      */
     @GET("article/list/{page}/json")
     fun getKnowledgeList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleBody>>
+
+
+    /**
+     *置顶文章
+     */
+    @GET("article/top/json")
+    fun getTopArticles(): Observable<BaseResponse<MutableList<Article>>>
+
+    /**
+     * 首页文章列表
+     * 页码，拼接在连接中，从0开始。
+     *
+     */
+    @GET("article/list/{page}/json")
+    fun getArticlesList(@Path("page") page: Int): Observable<BaseResponse<ArticleBody>>
 
     /**
      * 获取导航数据

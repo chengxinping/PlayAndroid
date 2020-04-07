@@ -5,7 +5,7 @@ ext {
             minSdkVersion    : 21,
             targetSdkVersion : 28,
             versionCode      : 1,
-            versionName      : "0.6.0"
+            versionName      : "0.8.0"
     ]
     dependVersion = [
             okhttpVersion     : "3.14.3",
@@ -52,7 +52,7 @@ ext {
             //万能rv adapter
             "brvh"                  : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
             //轮播图
-            "banner"                : 'cn.bingoogolapple:bga-banner:2.2.6@aar',
+            "banner"                : 'cn.bingoogolapple:bga-banner:3.0.0@aar',
             //Android webview
             "agentweb"              : 'com.just.agentweb:agentweb:4.1.2',
             //热搜标签

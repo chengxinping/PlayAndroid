@@ -2,6 +2,7 @@ package cn.xpcheng.playandroid.base
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 /**
  * @author ChengXinPing
@@ -34,7 +35,7 @@ abstract class BaseMVPFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
     }
 
     override fun showError(errorMsg: String) {
-
+        Toast.makeText(context!!, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
     override fun showLoading() {
