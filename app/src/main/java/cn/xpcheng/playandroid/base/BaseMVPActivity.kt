@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.base
 
-import android.widget.Toast
+import cn.xpcheng.playandroid.ext.toast
+import com.fengchen.uistatus.annotation.UiStatus
 
 /**
  * @author ChengXinPing
@@ -33,6 +34,14 @@ abstract class BaseMVPActivity<in V : IView, P : IPresenter<V>> : BaseActivity()
     }
 
     override fun showError(errorMsg: String) {
-        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
+        errorMsg.toast(this)
+    }
+
+    override fun showLoading() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.LOADING)
+    }
+
+    override fun hideLoading() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.CONTENT)
     }
 }

@@ -127,7 +127,6 @@ class HomePageFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), Ho
 
     override fun showLoading() {
         super.showLoading()
-        swipeRefreshLayout.isRefreshing = true
     }
 
     override fun hideLoading() {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.fengchen.uistatus.UiStatusController
 
 /**
  * @author ChengXinPing
@@ -22,6 +23,9 @@ abstract class BaseFragment : Fragment() {
      * 数据是否加载过了
      */
     private var hasLoadData = false
+
+
+    protected lateinit var mUiStatusController: UiStatusController
 
     /**
      * 布局文件id
@@ -40,7 +44,9 @@ abstract class BaseFragment : Fragment() {
     abstract fun initData()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(getLayoutID(), null)
+        val view = inflater?.inflate(getLayoutID(), null)
+        mUiStatusController = UiStatusController.get();
+        return mUiStatusController.bindFragment(view)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -36,9 +36,6 @@ class WechatFragment : BaseMVPFragment<ListContract.View, WechatPresenter>(), Li
         }
     }
 
-    override fun showError(errorMsg: String) {
-        super.showError(errorMsg)
-    }
 
     private val onTabSelectedListener = object : TabLayout.OnTabSelectedListener {
         override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -55,19 +52,10 @@ class WechatFragment : BaseMVPFragment<ListContract.View, WechatPresenter>(), Li
 
     }
 
-    override fun showLoading() {
-        super.showLoading()
-        //TODO
-    }
-
-    override fun hideLoading() {
-        super.hideLoading()
-    }
 
     override fun initData() {
         mPresenter!!.getTree()
     }
-
 
     override fun onGetTreeSuccess(list: List<ProjectTreeBean>) {
 
@@ -84,7 +72,7 @@ class WechatFragment : BaseMVPFragment<ListContract.View, WechatPresenter>(), Li
         if (mAdapter.count == 0) {
             return
         }
-        (mAdapter.getItem(vp_project.currentItem)  as KnowledgeListFragment).scrollToTop()
+        (mAdapter.getItem(vp_project.currentItem) as KnowledgeListFragment).scrollToTop()
     }
 
     override fun createPresenter(): WechatPresenter = WechatPresenter()

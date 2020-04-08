@@ -8,7 +8,6 @@ import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.adapter.NavigationAdapter
 import cn.xpcheng.playandroid.adapter.NavigationTagAdapter
 import cn.xpcheng.playandroid.base.BaseMVPActivity
-import cn.xpcheng.playandroid.ext.toast
 import cn.xpcheng.playandroid.mvp.contract.NavigationContract
 import cn.xpcheng.playandroid.mvp.model.bean.NavigationBean
 import cn.xpcheng.playandroid.mvp.presenter.NavigationPresenter
@@ -102,18 +101,6 @@ class NavigationActivity : BaseMVPActivity<NavigationContract.View, NavigationCo
     }
 
     override fun createPresenter(): NavigationContract.Presenter = NavigationPresenter()
-
-    override fun showLoading() {
-        swipeRefreshLayout.isRefreshing = true
-    }
-
-    override fun hideLoading() {
-        swipeRefreshLayout.isRefreshing = false
-    }
-
-    override fun showError(errorMsg: String) {
-        errorMsg.toast(this)
-    }
 
     override fun onGetNavigationListSuccess(list: List<NavigationBean>) {
         list.let {

@@ -7,6 +7,7 @@ import android.preference.PreferenceActivity.EXTRA_SHOW_FRAGMENT
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.ui.fragment.SettingFragment
+import com.fengchen.uistatus.annotation.UiStatus
 import kotlinx.android.synthetic.main.toolbar.*
 
 /**
@@ -20,6 +21,7 @@ class SettingActivity : BaseActivity() {
 
 
     override fun initView() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.CONTENT)
         val initFragment: String = intent.getStringExtra(EXTRA_SHOW_FRAGMENT) ?: ""
 
 

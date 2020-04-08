@@ -6,6 +6,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.constant.Constant
+import com.fengchen.uistatus.annotation.UiStatus
 import com.google.android.material.appbar.AppBarLayout
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
@@ -43,6 +44,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     override fun initView() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.CONTENT)
         toolbar.apply {
             title = "正在加载中..."
             setSupportActionBar(this)

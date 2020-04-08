@@ -7,6 +7,7 @@ import cn.xpcheng.playandroid.constant.Constant
 import cn.xpcheng.playandroid.mvp.model.bean.Knowledge
 import cn.xpcheng.playandroid.mvp.model.bean.KnowledgeTree
 import cn.xpcheng.playandroid.ui.fragment.KnowledgeListFragment
+import com.fengchen.uistatus.annotation.UiStatus
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_knowledge_list.*
 
@@ -38,6 +39,7 @@ class KnowledgeListActivity : BaseActivity() {
     }
 
     override fun initView() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.CONTENT)
         toolbar.run {
             title = (intent.extras.getSerializable(Constant.KEY_KNOWLEDGE_LIST_DATA) as KnowledgeTree).name
             setSupportActionBar(this)

@@ -4,9 +4,12 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.fengchen.uistatus.UiStatusManager
+import com.fengchen.uistatus.annotation.UiStatus
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import org.litepal.LitePal
 import kotlin.properties.Delegates
 
 /**
@@ -30,6 +33,11 @@ class App : Application() {
         context = applicationContext
         initConfig()
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
+
+        LitePal.initialize(this)
+
+        UiStatusManager.getInstance()
+                .addUiStatusConfig(UiStatus.LOADING, R.layout.ui_status_layout_loading)
 
     }
 

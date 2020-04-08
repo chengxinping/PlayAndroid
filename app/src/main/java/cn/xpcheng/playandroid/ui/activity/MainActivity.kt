@@ -1,6 +1,7 @@
 package cn.xpcheng.playandroid.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import cn.xpcheng.playandroid.R
 import cn.xpcheng.playandroid.base.BaseActivity
 import cn.xpcheng.playandroid.ui.fragment.*
+import com.fengchen.uistatus.annotation.UiStatus
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -26,6 +28,7 @@ class MainActivity : BaseActivity() {
     override fun getLayoutID(): Int = R.layout.activity_main
 
     override fun initView() {
+        mUiStatusController.changeUiStatusIgnore(UiStatus.CONTENT)
         toolbar.run {
             title = getString(R.string.app_name)
             setSupportActionBar(this)
@@ -124,14 +127,16 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_search, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_search -> {
-
+                Intent(this, SearchActivity::class.java).run {
+                    startActivity(this)
+                }
                 return true
             }
         }

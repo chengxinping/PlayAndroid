@@ -3,7 +3,6 @@ package cn.xpcheng.playandroid.ui.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.xpcheng.playandroid.R
@@ -140,10 +139,6 @@ class ProjectListFragment : BaseMVPFragment<ProjectListContract.View, ProjectLis
         }
     }
 
-    override fun showLoading() {
-        super.showLoading()
-        swipeRefreshLayout.isRefreshing = true
-    }
 
     override fun hideLoading() {
         super.hideLoading()
@@ -157,7 +152,6 @@ class ProjectListFragment : BaseMVPFragment<ProjectListContract.View, ProjectLis
 
     override fun showError(errorMsg: String) {
         super.showError(errorMsg)
-        Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
         mAdapter.run {
             if (isRefresh)
                 setEnableLoadMore(true)

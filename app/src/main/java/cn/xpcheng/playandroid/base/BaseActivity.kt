@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import com.fengchen.uistatus.UiStatusController
 
 
 /**
@@ -29,11 +30,14 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     abstract fun initView()
 
+    protected lateinit var mUiStatusController: UiStatusController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutID())
         parseIntent()
+        mUiStatusController = UiStatusController.get().bind(this)
         initView()
         initData()
     }

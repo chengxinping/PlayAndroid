@@ -84,4 +84,7 @@ interface ApiService {
      */
     @GET("wxarticle/list/{cid}/{page}/json")
     fun getWechatList(@Path("cid") cid: Int, @Path("page") page: Int): Observable<BaseResponse<ArticleBody>>
+
+    @GET("hotkey/json")
+    fun getHotKeys(): Observable<BaseResponse<MutableList<HotKey>>>
 }

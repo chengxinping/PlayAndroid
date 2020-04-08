@@ -20,13 +20,13 @@ class HomePresenter : BasePresenter<HomeModel, HomeContract.View>(), HomeContrac
     override fun createModel(): HomeModel = HomeModel()
 
     override fun getBanner() {
-        mModel!!.getBanner().requestWithSuccessCallback(mModel, mView, true) {
+        mModel!!.getBanner().requestWithSuccessCallback(mModel, mView, false) {
             mView!!.setBanner(it.data)
         }
     }
 
     override fun getHomeData() {
-
+        mView?.showLoading()
         getBanner()
 
         Observable.zip(mModel!!.getTopArticles(), mModel!!.getHomeArticles(0)

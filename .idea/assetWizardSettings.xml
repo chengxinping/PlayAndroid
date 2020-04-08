@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_arrow_upward" />
-                            <entry key="sourceFile" value="C:\Users\ChengXinPing\Downloads\402导航.svg" />
+                            <entry key="outputName" value="ic_delete_all" />
+                            <entry key="sourceFile" value="C:\Users\ChengXinPing\Downloads\删除.svg" />
                           </map>
                         </option>
                       </PersistentState>

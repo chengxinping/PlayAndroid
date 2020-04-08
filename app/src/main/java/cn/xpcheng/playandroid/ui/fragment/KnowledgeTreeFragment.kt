@@ -2,7 +2,6 @@ package cn.xpcheng.playandroid.ui.fragment
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -98,10 +97,6 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         }
     }
 
-    override fun showLoading() {
-        super.showLoading()
-        swipeRefreshLayout.isRefreshing = true
-    }
 
     override fun hideLoading() {
         super.hideLoading()
@@ -116,7 +111,6 @@ class KnowledgeTreeFragment : BaseMVPFragment<KnowledgeTreeContract.View, Knowle
         mKnowledgeTreeListAdapter.run {
             loadMoreFail()
         }
-        Toast.makeText(context!!, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
     //下拉刷新监听

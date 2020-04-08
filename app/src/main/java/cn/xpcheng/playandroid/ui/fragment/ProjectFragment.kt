@@ -37,9 +37,6 @@ class ProjectFragment : BaseMVPFragment<ListContract.View, ProjectPresenter>(), 
         }
     }
 
-    override fun showError(errorMsg: String) {
-        super.showError(errorMsg)
-    }
 
     private val onTabSelectedListener = object : TabLayout.OnTabSelectedListener {
         override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -56,14 +53,6 @@ class ProjectFragment : BaseMVPFragment<ListContract.View, ProjectPresenter>(), 
 
     }
 
-    override fun showLoading() {
-        super.showLoading()
-        //TODO
-    }
-
-    override fun hideLoading() {
-        super.hideLoading()
-    }
 
     override fun initData() {
         val recentlyProject = ProjectTreeBean(mutableListOf(), -1, -1, "", -1, -1, false, -1)
@@ -87,6 +76,6 @@ class ProjectFragment : BaseMVPFragment<ListContract.View, ProjectPresenter>(), 
         if (mAdapter.count == 0) {
             return
         }
-        (mAdapter.getItem(vp_project.currentItem)  as ProjectListFragment).scrollToTop()
+        (mAdapter.getItem(vp_project.currentItem) as ProjectListFragment).scrollToTop()
     }
 }

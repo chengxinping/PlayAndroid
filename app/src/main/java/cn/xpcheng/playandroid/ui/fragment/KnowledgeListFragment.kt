@@ -3,7 +3,6 @@ package cn.xpcheng.playandroid.ui.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -115,6 +114,9 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
     }
 
     override fun onGetKnowledgeListDone(articles: ArticleBody) {
+        if (swipeRefreshLayout.isRefreshing) {
+            swipeRefreshLayout.isRefreshing = false
+        }
         articles.datas.let {
             mArticleListAdapt.run {
                 if (isRefresh)
@@ -148,14 +150,9 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
         mPresenter!!.getKnowledgeList(0, cid)
     }
 
-    override fun showLoading() {
-        super.showLoading()
-        swipeRefreshLayout.isRefreshing = true
-    }
 
     override fun hideLoading() {
         super.hideLoading()
-        swipeRefreshLayout.isRefreshing = false
         if (isRefresh) {
             mArticleListAdapt.run {
                 setEnableLoadMore(true)
@@ -165,7 +162,6 @@ class KnowledgeListFragment : BaseMVPFragment<KnowledgeListContract.View, Knowle
 
     override fun showError(errorMsg: String) {
         super.showError(errorMsg)
-        Toast.makeText(context!!, errorMsg, Toast.LENGTH_SHORT).show()
         mArticleListAdapt.run {
             if (isRefresh)
                 setEnableLoadMore(true)

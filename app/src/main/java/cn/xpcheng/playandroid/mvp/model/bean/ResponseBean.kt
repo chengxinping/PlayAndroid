@@ -1,5 +1,6 @@
 package cn.xpcheng.playandroid.mvp.model.bean
 
+import org.litepal.crud.LitePalSupport
 import java.io.Serializable
 
 /**
@@ -119,3 +120,15 @@ data class ProjectTreeBean(
         val userControlSetTop: Boolean,
         val visible: Int
 )
+
+data class HotKey(
+        val id: Int,
+        val link: String,
+        val name: String,
+        val order: Int,
+        val visible: Int
+)
+
+
+data class SearchHistory(val key: String) : LitePalSupport()
+
