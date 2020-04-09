@@ -2,9 +2,7 @@ package cn.xpcheng.playandroid.api
 
 import cn.xpcheng.playandroid.mvp.model.bean.*
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * @author ChengXinPing
@@ -87,4 +85,8 @@ interface ApiService {
 
     @GET("hotkey/json")
     fun getHotKeys(): Observable<BaseResponse<MutableList<HotKey>>>
+
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    fun search(@Path("page") page: Int, @Field("k") key: String): Observable<BaseResponse<ArticleBody>>
 }

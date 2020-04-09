@@ -186,7 +186,7 @@ class HomePageFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), Ho
                 else
                     addData(it)
                 val size = it.size
-                if (size < it.size)
+                if (size < articleBody.size)
                     loadMoreEnd(isRefresh)
                 else
                     loadMoreComplete()
