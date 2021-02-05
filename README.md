@@ -1,7 +1,7 @@
 # (新坑慎入) kotlin版`玩Android`第三方客户端
 ## RxKotlin+OkHttp3+Retrofit+MVP
 
-## 该项目已不再维护 请移步[MVVM版本] (https://github.com/chengxinping/WanAdnroidMVVM)
+## 该项目已不再维护 请移步[MVVM版本](https://github.com/chengxinping/WanAdnroidMVVM)
 
 ### 拼命埋坑中......(目前进度 83%)
 #### 当前进度 
